@@ -40,10 +40,6 @@ app.post("/files", async (req, res) => {
   const base64String = file.buffer.toString("base64");
   const dataURI = `data:${file.mimetype};base64,${base64String}`;
 
-  // -----------------------------------------------------------
-  // Upload to Cloudinary
-  // -----------------------------------------------------------
-  // NOTE: folder, resource_type auto-detect, tags optional
   const uploadResult = await cloudinary.uploader.upload(dataURI, {
     folder: "Blog", // change as needed
     public_id: path.parse(file.originalname).name,
